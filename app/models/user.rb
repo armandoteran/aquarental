@@ -7,4 +7,5 @@ class User < ApplicationRecord
   has_many :equipments
   has_many :bookings
   has_many :reservations, through: :equipments, source: :bookings
+  has_many :reviews, through: :bookings
 end
