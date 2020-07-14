@@ -15,7 +15,7 @@ class EquipmentsController < ApplicationController
   def create
     @equipment = Equipment.new(equipment_params)
     @equipment.user = current_user
-    @equipment.state = 'unpublished'
+    @equipment.state = 'UNPUBLISHED'
 
     if @equipment.save
       redirect_to equipment_path(@equipment)
