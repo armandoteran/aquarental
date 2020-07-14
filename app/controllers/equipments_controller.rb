@@ -1,5 +1,5 @@
 class EquipmentsController < ApplicationController
-  before_action :set_equipment, only: %i[show destroy]
+  before_action :set_equipment, only: %i[show edit update destroy]
 
   def index
     @equipments = Equipment.all
@@ -15,7 +15,7 @@ class EquipmentsController < ApplicationController
   def create
     @equipment = Equipment.new(equipment_params)
     @equipment.user = current_user
-    @equipment.state = 'pending'
+    @equipment.state = 'unpublished'
 
     if @equipment.save
       redirect_to equipment_path(@equipment)
@@ -28,6 +28,15 @@ class EquipmentsController < ApplicationController
     @equipment.destroy
 
     redirect_to equipments_path
+  end
+
+  def edit
+  end
+
+  def update
+    @equipment.update(equipment_params)
+
+    redirect_to equipment_path(@equipment)
   end
 
   private
