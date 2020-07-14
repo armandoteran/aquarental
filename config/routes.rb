@@ -1,5 +1,14 @@
 Rails.application.routes.draw do
   devise_for :users
-  root to: 'pages#home'
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+  root to: 'equipments#index'
+  get 'equipments', to: 'equipments#index', as: :equipments
+  get 'equipments/new', to: 'equipments#new', as: :new_equipment
+
+  get 'equipments/:id', to: 'equipments#show', as: :equipment
+  post 'equipment', to: 'equipment#create'
+
+
+
+  delete 'equipment/:id', to: 'equipments#destroy'
+
 end

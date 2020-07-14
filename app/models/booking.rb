@@ -11,3 +11,8 @@ class Booking < ApplicationRecord
     errors.add(:end_date, "can't be before start_date") if start_date > end_date
   end
 end
+
+# STATES:
+# => PENDING
+# => REJECTED
+# => ACCEPTED

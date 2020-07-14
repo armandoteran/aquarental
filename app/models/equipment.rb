@@ -13,3 +13,7 @@ class Equipment < ApplicationRecord
   end
   has_one_attached :photo
 end
+
+# STATES:
+# => UNPUBLISHED
+# => PUBLISHED
