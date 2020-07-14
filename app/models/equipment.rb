@@ -6,9 +6,10 @@ class Equipment < ApplicationRecord
             :price_hour, :start_date, :end_date,
             :location, presence: true
 
-  validates :end_date_after_start_date
+  validate :end_date_after_start_date
 
   def end_date_after_start_date
     errors.add(:end_date, "can't be before start_date") if start_date > end_date
   end
+  has_one_attached :photo
 end
