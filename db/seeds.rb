@@ -38,19 +38,17 @@ end
 #Equipments
 puts 'creating equipments'
 
-def assign_category
-  categories = ['boats', 'kayak', 'stand-up paddle board', 'aquacycle', 'surf table', 'kite surf', 'canoe']
-  category = categories.sample
-end
+categories = ['boats', 'kayak', 'stand-up paddle board', 'aquacycle', 'surf table', 'kite surf', 'canoe']
 
 equipments = []
 5.times do
+  category = categories.sample
   equipments << Equipment.create!(
     user_id: users.sample.id,
     name: ['equipment1', 'equipment2', 'equipment3', 'equipment4', 'equipment5'].sample,
     description: ['semi-pro', 'ideal for beginners', 'pro'].sample,
-    category: assign_category,
-    picture_url: 'https://source.unsplash.com/1600x900/?#{category}',
+    category: category,
+    picture_url: "https://source.unsplash.com/1600x900/?#{category}",
     price_day: 240,
     price_hour: 10,
     start_date: Time.current,
