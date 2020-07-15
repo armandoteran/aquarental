@@ -6,7 +6,6 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-require "open-uri"
 require 'time'
 
 #Destroy review
@@ -28,48 +27,62 @@ puts 'users database is clean'
 
 #Users
 puts 'creating users'
-user1 = User.create!(
-  email: 'john.smith@gmail.com',
-  password: 'password'
+users = []
+5.times do
+  users << User.create!(
+    email: Faker::Internet.email,
+    password: 'password'
 )
+end
 
 #Equipments
 puts 'creating equipments'
-longboard1 = Equipment.create!(
-  user_id: user1.id,
-  name: 'longboard',
-  description: 'Length: 8ft 6in, 9ft 1in, 9ft 6in. Construction: polyurethane, 0.25in cedar stringer. Profile: medium rocker. Nose: round. Thickness: [9ft 1in] 2.8in, [9ft 6in] 3.1in',
-  category: 'non motorized',
-  price_day: 240,
-  price_hour: 10,
-  start_date: Time.current,
-  end_date: 30.day.from_now,
-  location: 'Mar del Plata',
-  state: 'published'
-)
 
-file = URI.open('https://images.unsplash.com/photo-1560616275-5ca158bd4876?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1051&q=80')
-longboard1.photo.attach(
-  io: file, filename: 'longboard.jpeg', content_type: 'image/jpeg'
+def assign_category
+  categories = ['boats', 'kayak', 'stand-up paddle board', 'aquacycle', 'surf table', 'kite surf', 'canoe']
+  category = categories.sample
+end
+
+equipments = []
+5.times do
+  equipments << Equipment.create!(
+    user_id: users.sample.id,
+    name: ['equipment1', 'equipment2', 'equipment3', 'equipment4', 'equipment5'].sample,
+    description: ['semi-pro', 'ideal for beginners', 'pro'].sample,
+    category: assign_category,
+    picture_url: 'https://source.unsplash.com/1600x900/?#{category}',
+    price_day: 240,
+    price_hour: 10,
+    start_date: Time.current,
+    end_date: 30.day.from_now,
+    location: 'Mar del Plata',
+    state: 'published'
 )
+end
+
 puts 'equipments created'
 
 #Bookings
 puts 'creating bookings'
-booking1 = Booking.create!(
-  total_price: 480,
-  state: 'pending',
-  start_date: 1.day.from_now,
-  end_date: 2.day.from_now,
-  user_id: user1.id,
-  equipment_id: longboard1.id
-  )
+bookings = []
+5.times do
+  bookings << Booking.create!(
+    user_id: users.sample.id,
+    equipment_id: equipments.sample.id,
+    total_price: 480,
+    state: 'pending',
+    start_date: 1.day.from_now,
+    end_date: 2.day.from_now,
+)
+end
 puts 'bookings created'
 
 #Reviews
 puts 'creating reviews'
-review1 = Review.create!(
-  rating: 4,
-  booking_id: booking1.id,
-  content: 'excellent board'
-  )
+5.times do
+  review = Review.create!(
+    rating: 4,
+    booking_id: bookings.sample.id,
+    content: 'excellent board'
+)
+end
