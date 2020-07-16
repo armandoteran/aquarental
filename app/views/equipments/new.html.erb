@@ -1,0 +1,19 @@
+<%= form_for(@equipment) do |f| %>
+  <%= f.label :name %>
+  <%= f.text_field :name %>
+  <%= f.label :description %>
+  <%= f.text_field :description %>
+  <%= f.label :category %>
+  <%= f.text_field :category %>
+  <%= f.label :location %>
+  <%= f.text_field :location %>
+  <%= f.label :picture %>
+  <%= f.text_field :picture_url %>
+  <%= f.label :start %>
+  <%= f.date_field :start_date %>
+  <%= f.label :end %>
+  <%= f.date_field :end_date %>
+  <%= f.label :price_day %>
+  <%= f.number_field :price_day %>
+  <%= f.submit %>
+<% end %>
