@@ -11,7 +11,6 @@ class Equipment < ApplicationRecord
   def end_date_after_start_date
     errors.add(:end_date, "can't be before start_date") if start_date > end_date
   end
-  has_one_attached :photo
 end
 
 # STATES:
