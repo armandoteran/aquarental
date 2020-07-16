@@ -7,8 +7,8 @@ Rails.application.routes.draw do
   get 'equipments/:id', to: 'equipments#show', as: :equipment
   post 'equipment', to: 'equipment#create'
 
-
-
   delete 'equipment/:id', to: 'equipments#destroy'
+
+  resources :equipments
 
 end
