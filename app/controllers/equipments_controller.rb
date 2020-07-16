@@ -6,6 +6,7 @@ class EquipmentsController < ApplicationController
   end
 
   def show
+    @equipment = Equipment.find(params[:id])
   end
 
   def new
