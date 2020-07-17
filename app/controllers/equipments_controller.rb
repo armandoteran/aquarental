@@ -31,6 +31,7 @@ class EquipmentsController < ApplicationController
   end
 
   def edit
+    @equipment = Equipment.find(params[:id])
   end
 
   def update
