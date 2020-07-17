@@ -1,14 +1,19 @@
-<div class="cards">
-  <% @equipments.each do |eq| %>
-    <div class="card">
-      <p><%= eq.name %></p>
-      <p><%= eq.description %></p>
-      <p>Price per hour:<%= eq.price_hour %></p>
-      <p>Price per day:<%= eq.price_day %></p>
-      <p>State:<%= eq.state %></p>
-      <%= link_to (image_tag "#{eq.picture_url}", width: 200),  equipments_path %>
+<div class="container">
+  <div class="cards">
+    <% @equipments.each do |eq| %>
+      <div class="card">
+        <p><%= eq.name %></p>
+        <p><%= eq.description %></p>
+        <p>Price per hour:<%= eq.price_hour %></p>
+        <p>Price per day:<%= eq.price_day %></p>
+        <p>State:<%= eq.state %></p>
+        <%= link_to (image_tag "#{eq.picture_url}", width: 200), equipment_path(eq) %>
+      </div>
+    <% end %>
+    <div class="container">
+      new_equipment_path
+      <%= link_to "Crear equipo", new_equipment_path %>
     </div>
-  <% end %>
+  </div>
 </div>
-
 
