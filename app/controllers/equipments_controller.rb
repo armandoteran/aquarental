@@ -23,6 +23,7 @@ class EquipmentsController < ApplicationController
     @equipment = Equipment.new(equipment_params)
     @equipment.owner = current_user
     @equipment.state = 'UNPUBLISHED'
+    authorize @equipment
 
     if @equipment.save
       redirect_to equipment_path(@equipment)
@@ -32,16 +33,19 @@ class EquipmentsController < ApplicationController
   end
 
   def destroy
+    authorize @equipment
     @equipment.destroy
 
     redirect_to equipments_path
   end
 
   def edit
+    authorize @equipment
     @equipment = Equipment.find(params[:id])
   end
 
   def update
+    authorize @equipment
     @equipment.update(equipment_params)
 
     redirect_to equipment_path(@equipment)
@@ -51,7 +55,6 @@ class EquipmentsController < ApplicationController
 
   def set_equipment
     @equipment = Equipment.find(params[:id])
-    authorize @equipment
   end
 
   def equipment_params
