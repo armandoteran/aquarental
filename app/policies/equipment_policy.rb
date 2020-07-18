@@ -14,10 +14,10 @@ class EquipmentPolicy < ApplicationPolicy
   end
 
   def update?
-    record.owner == current_user
+    record.owner == user
   end
 
   def destroy?
-    record.owner == current_user
+    record.owner == user
   end
 end
