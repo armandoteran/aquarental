@@ -1,13 +1,9 @@
 <div class="navbar navbar-expand-sm navbar-light navbar-lewagon">
-  <% if user_signed_in? %>
-    <%= link_to new_equipment_path,  { class: "btn btn-ghost" } do %>
-      Publicar equipo <i class="fa fa-plus-circle" aria-hidden="true"></i>
-    <% end %>
-  <% else %>
-    <%= link_to new_user_registration_path,  { class: "btn btn-ghost" } do %>
-      Publicar equipo <i class="fa fa-plus-circle" aria-hidden="true"></i>
-    <% end %>
+
+  <%= link_to new_equipment_path,  { class: "btn btn-ghost" } do %>
+    Publicar equipo <i class="fa fa-plus-circle" aria-hidden="true"></i>
   <% end %>
+
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
