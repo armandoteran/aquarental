@@ -5,11 +5,6 @@ class BookingPolicy < ApplicationPolicy
     end
   end
 
-  #provisorio
-  def index
-    true
-  end
-
   def show
     record.owner == current_tuser || record.renter == current_user
   end
