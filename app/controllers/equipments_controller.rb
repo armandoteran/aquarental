@@ -1,6 +1,10 @@
 class EquipmentsController < ApplicationController
   before_action :set_equipment, only: %i[show edit update destroy]
 
+  # Authorization
+  skip_after_action :verify_authorized, only: %i[index show]
+  after_action :verify_policy_scoped, only: :index, unless: :skip_pundit?
+
   def index
     @equipments = Equipment.all
   end
