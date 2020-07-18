@@ -16,7 +16,9 @@ class BookingsController < ApplicationController
   def create
     @equipment = Equipment.find(params[:equipment_id])
     @booking = Booking.new(booking_params)
+    @booking.equipment = @equipment
     @booking.renter = current_user
+    @booking.state = 'pending'
     if @booking.save
       redirect_to bookings_path
     else

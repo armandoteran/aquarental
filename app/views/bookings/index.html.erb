@@ -1,15 +1,21 @@
-<div class="cards">
-  <% @bookings.each do |book| %>
-    <div class="card">
-      <p>Equipment: <%= book.equipment %></p>
-      <p>Owner: <%= book.owner %></p>
-      <p>Renter: <%= book.renter %></p>
-      <p>Start date: <%= book.start_date %></p>
-      <p>End date: <%= book.end_date %></p>
-      <p>End date: <%= book.end_date %></p>
-      <p>Total price: US$<%= book.total_price %></p>
+<div class="cards my-3 mx-3">
 
-      <%= image_tag "#{book.equipment.picture_url}", width: 200 %>
-    </div>
-  <% end %>
+    <% @bookings.each do |book| %>
+
+      <div class="card-product">
+        <%= image_tag "#{book.equipment.picture_url}", width: 200 %>
+
+        <div class="card-product-infos">
+          <h2><%= book.equipment.name %></h2>
+          <p><strong>Owner:</strong> <%= book.owner.email %></p>
+          <p><strong>Renter:</strong> <%= book.renter.email %></p>
+          <p><strong>Start date:</strong> <%= book.start_date %></p>
+          <p><strong>End date:</strong> <%= book.end_date %></p>
+          <p><strong>Total price:</strong> US$<%= book.total_price %></p>
+        </div>
+
+      </div>
+
+    <% end %>
+
 </div>

@@ -10,7 +10,9 @@ class Booking < ApplicationRecord
   before_validation :set_total_price
 
   def end_date_after_start_date
-    errors.add(:end_date, "can't be before start_date") if start_date > end_date
+    if !start_date.nil? && !end_date.nil?
+      errors.add(:end_date, "can't be before start_date") if start_date > end_date
+    end
   end
 
   def set_total_price
