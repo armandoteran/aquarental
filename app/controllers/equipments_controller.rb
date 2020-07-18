@@ -2,8 +2,13 @@ class EquipmentsController < ApplicationController
   before_action :set_equipment, only: %i[show edit update destroy]
   skip_before_action :authenticate_user!, only: %i[index show]
 
+  # Authorization
+  skip_after_action :verify_authorized, only: %i[index show]
+  after_action :verify_policy_scoped, only: :index, unless: :skip_pundit?
+
   def index
     @equipments = Equipment.all
+    @equipments = policy_scope(Equipment)
   end
 
   def show
@@ -11,6 +16,7 @@ class EquipmentsController < ApplicationController
 
   def new
     @equipment = Equipment.new
+    authorize @equipment
   end
 
   def create
@@ -45,6 +51,7 @@ class EquipmentsController < ApplicationController
 
   def set_equipment
     @equipment = Equipment.find(params[:id])
+    authorize @equipment
   end
 
   def equipment_params

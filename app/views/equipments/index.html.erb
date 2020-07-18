@@ -9,8 +9,9 @@
             <h2><%= eq.name %></h2>
             <p><%= eq.description %></p>
           </div>
-          <h2 class="card-trip-pricing"><%= "$#{eq.price_day}" %></h2>
+          <h2 class="card-trip-pricing"><%= "$#{eq.price_day} x dia" %></h2>
           <img src="https://kitt.lewagon.com/placeholder/users/krokrob" class="card-trip-user avatar-bordered" />
+          <%= link_to "", equipment_path(eq), class: "card-link" %>
         </div>
       </div>
 
