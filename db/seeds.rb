@@ -38,22 +38,36 @@ end
 #Equipments
 puts 'creating equipments'
 
-categories = ['boats', 'kayak', 'stand-up paddle board', 'aquacycle', 'surf table', 'kite surf', 'canoe']
+categories = [ {name: 'Bote', img_url: 'bote'},
+               {name: 'Kayak', img_url: 'kayak'},
+               {name: 'Paddle board', img_url: 'paddleboard'},
+               {name: 'Tablas de surf', img_url: 'surf table'},
+               {name: 'Kite surf', img_url: 'kite surf'},
+               {name: 'Wind surf', img_url: 'windsurf'},
+               {name: 'Canoas', img_url: 'canoe'}]
+
+adjetives = ['El mejor',
+             'Imperdible',
+             'Inmejorable',
+             'Oferton:',
+             'Carito, pero lo vale:',
+             'Para toda la familia:',
+             'Totalmente equipado!,']
 
 equipments = []
-5.times do
+15.times do
   category = categories.sample
   equipments << Equipment.create!(
     user_id: users.sample.id,
-    name: ['equipment1', 'equipment2', 'equipment3', 'equipment4', 'equipment5'].sample,
+    name: "#{adjetives.sample} #{category[:name]}",
     description: ['semi-pro', 'ideal for beginners', 'pro'].sample,
-    category: category,
-    picture_url: "https://source.unsplash.com/1600x900/?#{category}",
-    price_day: 240,
+    category: category[:name],
+    picture_url: "https://source.unsplash.com/1600x900/?#{category[:img_url]}",
+    price_day: rand(200..2000),
     price_hour: 10,
     start_date: Time.current,
     end_date: 30.day.from_now,
-    location: 'Mar del Plata',
+    location: Faker::Address.full_address #'Mar del Plata',
     state: 'published'
 )
 end
@@ -79,8 +93,8 @@ puts 'bookings created'
 puts 'creating reviews'
 5.times do
   review = Review.create!(
-    rating: 4,
+    rating: rand(0..5),
     booking_id: bookings.sample.id,
-    content: 'excellent board'
+    content: Faker::Restaurant.review # 'excellent board'
 )
 end
