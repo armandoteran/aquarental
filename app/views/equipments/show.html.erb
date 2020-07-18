@@ -11,8 +11,8 @@
       <h2 class="card-trip-pricing"><strong>$<%= @equipment.price_day %>/día</strong></h2>
 
       <div class="my-4">
-        <% if policy(@equipment).update? %>
           <%= link_to "Reservar", new_equipment_booking_path(@equipment), class: "btn btn-ghost" %>
+        <% if policy(@equipment).update? %>
           <%= link_to edit_equipment_path(@equipment) do %><i class="fa fa-edit"></i><% end %>
           <%= link_to equipment_path(@equipment), method: :delete, data: { confirm: "Are you sure?" } do %>
             <i class="fa fa-trash destroy_dose"></i>
