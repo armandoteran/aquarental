@@ -35,6 +35,8 @@ users = []
 )
 end
 
+user_alpha = User.create!(email: 'jpcastiglioni@gmail.com', password: '123456')
+
 #Equipments
 puts 'creating equipments'
 
@@ -60,7 +62,7 @@ equipments = []
   equipments << Equipment.create!(
     user_id: users.sample.id,
     name: "#{adjetives.sample} #{category[:name]}",
-    description: ['semi-pro', 'ideal for beginners', 'pro'].sample,
+    description: Faker::Company.bs, # ['semi-pro', 'ideal for beginners', 'pro'].sample,
     category: category[:name],
     picture_url: "https://source.unsplash.com/1600x900/?#{category[:img_url]}",
     price_day: rand(200..2000),
@@ -71,6 +73,36 @@ equipments = []
     state: 'published'
 )
 end
+
+category = categories.sample
+eq_alpha = Equipment.create!(
+    user: user_alpha,
+    name: "#{adjetives.sample} #{category[:name]}",
+    description: Faker::Company.bs, # ['semi-pro', 'ideal for beginners', 'pro'].sample,
+    category: category[:name],
+    picture_url: "https://source.unsplash.com/1600x900/?#{category[:img_url]}",
+    price_day: rand(200..2000),
+    price_hour: 10,
+    start_date: Time.current,
+    end_date: 30.day.from_now,
+    location: Faker::Address.full_address, #'Mar del Plata',
+    state: 'published'
+)
+
+category = categories.sample
+eq_beta = Equipment.create!(
+    user: user_alpha,
+    name: "#{adjetives.sample} #{category[:name]}",
+    description: Faker::Company.bs, # ['semi-pro', 'ideal for beginners', 'pro'].sample,
+    category: category[:name],
+    picture_url: "https://source.unsplash.com/1600x900/?#{category[:img_url]}",
+    price_day: rand(200..2000),
+    price_hour: 10,
+    start_date: Time.current,
+    end_date: 30.day.from_now,
+    location: Faker::Address.full_address, #'Mar del Plata',
+    state: 'published'
+)
 
 puts 'equipments created'
 
@@ -87,6 +119,43 @@ bookings = []
     end_date: 2.day.from_now,
 )
 end
+
+Booking.create!(
+    user_id: users.sample.id,
+    equipment_id: eq_beta,
+    total_price: 480,
+    state: 'pending',
+    start_date: 1.day.from_now,
+    end_date: 2.day.from_now,
+)
+
+Booking.create!(
+    user_id: users.sample.id,
+    equipment_id: eq_alpha,
+    total_price: 480,
+    state: 'pending',
+    start_date: 1.day.from_now,
+    end_date: 2.day.from_now,
+)
+
+Booking.create!(
+    user_id: user_alpha,
+    equipment_id: users.sample.id,
+    total_price: 480,
+    state: 'pending',
+    start_date: 1.day.from_now,
+    end_date: 2.day.from_now,
+)
+
+Booking.create!(
+    user_id: user_alpha,
+    equipment_id: equipments.sample.id,
+    total_price: 480,
+    state: 'pending',
+    start_date: 1.day.from_now,
+    end_date: 2.day.from_now,
+)
+
 puts 'bookings created'
 
 #Reviews
