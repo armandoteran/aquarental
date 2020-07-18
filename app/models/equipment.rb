@@ -3,8 +3,7 @@ class Equipment < ApplicationRecord
   has_many :bookings, dependent: :destroy
 
   validates :name, :description, :category, :price_day,
-            :price_hour, :start_date, :end_date,
-            :location, presence: true
+            :start_date, :end_date, :location, presence: true
 
   validate :end_date_after_start_date
 
