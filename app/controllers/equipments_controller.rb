@@ -4,10 +4,11 @@ class EquipmentsController < ApplicationController
 
   # Authorization
   skip_after_action :verify_authorized, only: %i[index show]
-  # after_action :verify_policy_scoped, only: :index, unless: :skip_pundit?
+  after_action :verify_policy_scoped, only: :index, unless: :skip_pundit?
 
   def index
     @equipments = Equipment.all
+    @equipments = policy_scope(Equipment)
   end
 
   def show
@@ -50,6 +51,7 @@ class EquipmentsController < ApplicationController
 
   def set_equipment
     @equipment = Equipment.find(params[:id])
+    authorize @equipment
   end
 
   def equipment_params
