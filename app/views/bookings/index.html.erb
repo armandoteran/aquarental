@@ -1,11 +1,11 @@
-<div class="cards my-3 mx-3">
+<div class="cards-booking my-3 mx-3">
 
     <% @bookings.each do |book| %>
 
-      <div class="card-product">
+      <div class="card-product-booking">
         <%= image_tag "#{book.equipment.picture_url}", width: 200 %>
 
-        <div class="card-product-infos">
+        <div class="card-product-infos-booking">
           <h2><%= book.equipment.name %></h2>
           <p><strong>Owner:</strong> <%= book.owner.email %></p>
           <p><strong>Renter:</strong> <%= book.renter.email %></p>
