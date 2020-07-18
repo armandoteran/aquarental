@@ -4,7 +4,8 @@ class BookingsController < ApplicationController
   # after_action :verify_policy_scoped, only: :index, unless: :skip_pundit?
 
   def index
-    @bookings = Booking.all
+    @as_owner_bookings = Booking.where(owner: current_user.id)
+    @as_renter_bookings = Booking.where(renter: current_user.id)
     # provisorio
   end
 
