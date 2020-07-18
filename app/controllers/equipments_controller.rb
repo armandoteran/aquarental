@@ -1,5 +1,6 @@
 class EquipmentsController < ApplicationController
   before_action :set_equipment, only: %i[show edit update destroy]
+  skip_before_action :authenticate_user!, only: %i[index show]
 
   def index
     @equipments = Equipment.all
@@ -31,6 +32,7 @@ class EquipmentsController < ApplicationController
   end
 
   def edit
+    @equipment = Equipment.find(params[:id])
   end
 
   def update
@@ -41,7 +43,7 @@ class EquipmentsController < ApplicationController
 
   private
 
-  def set_equpiment
+  def set_equipment
     @equipment = Equipment.find(params[:id])
   end
 

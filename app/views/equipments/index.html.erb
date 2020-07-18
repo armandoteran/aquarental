@@ -1,15 +1,20 @@
-<div class="cards">
-  <% @equipments.each do |eq| %>
-    <div class="card">
-      <p><%= eq.name %></p>
-      <p><%= eq.description %></p>
-      <p>Price per hour:<%= eq.price_hour %></p>
-      <p>Price per day:<%= eq.price_day %></p>
-      <p>State:<%= eq.state %></p>
-      <%= image_tag "#{eq.picture_url}", width: 200 %>
+<div class="container my-3">
+  <div class="cards">
+    <% @equipments.each do |eq| %>
 
-    </div>
-  <% end %>
+      <div class="card-trip">
+        <%= image_tag "#{eq.picture_url}", width: 200 %>
+        <div class="card-trip-infos">
+          <div>
+            <h2><%= eq.name %></h2>
+            <p><%= eq.description %></p>
+          </div>
+          <h2 class="card-trip-pricing"><%= "$#{eq.price_day}" %></h2>
+          <img src="https://kitt.lewagon.com/placeholder/users/krokrob" class="card-trip-user avatar-bordered" />
+        </div>
+      </div>
+
+    <% end %>
+  </div>
 </div>
-
 
