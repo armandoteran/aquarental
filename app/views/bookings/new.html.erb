@@ -1,0 +1,17 @@
+<div class="container">
+  <div class="row">
+    <div class="-col-6 m-auto">
+
+      <%= simple_form_for [@equipment, @booking] do |f| %>
+        <%= f.input :start_date, as: :date %>
+        <%= f.input :end_date, as: :date %>
+        <% if current_user  %>
+          <%= f.submit %>
+        <% else %>
+          <p> Please <%= link_to "log in", new_user_session_path %> before booking </p>
+        <%end  %>
+      <% end %>
+
+    </div>
+  </div>
+</div>

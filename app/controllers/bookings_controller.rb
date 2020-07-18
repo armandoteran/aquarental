@@ -9,12 +9,21 @@ class BookingsController < ApplicationController
   end
 
   def new
+    @equipment = Equipment.find(params[:equipment_id])
     @booking = Booking.new
   end
 
   def create
+    @equipment = Equipment.find(params[:equipment_id])
     @booking = Booking.new(booking_params)
-    @booking.save
+    @booking.equipment = @equipment
+    @booking.renter = current_user
+    @booking.state = 'PENDING'
+    if @booking.save
+      redirect_to bookings_path
+    else
+      render :new
+    end
   end
 
   def edit
@@ -34,6 +43,6 @@ class BookingsController < ApplicationController
   private
 
   def booking_params
-    params.require(:booking).permit(:start_date, :end_date, :total_price)
+    params.require(:booking).permit(:start_date, :end_date)
   end
 end
