@@ -1,12 +1,11 @@
 class BookingsController < ApplicationController
   # Authorization
-  # skip_after_action :verify_authorized, only: %i[index show]
+  skip_after_action :verify_authorized, only: %i[index]
   # after_action :verify_policy_scoped, only: :index, unless: :skip_pundit?
 
   def index
     @bookings = Booking.all
     # provisorio
-    authorize @booking
   end
 
   def show
