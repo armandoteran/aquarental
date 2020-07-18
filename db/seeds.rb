@@ -41,7 +41,7 @@ puts 'creating equipments'
 categories = [ {name: 'Bote', img_url: 'bote'},
                {name: 'Kayak', img_url: 'kayak'},
                {name: 'Paddle board', img_url: 'paddleboard'},
-               {name: 'Tablas de surf', img_url: 'surf table'},
+               {name: 'Tablas de surf', img_url: 'surfing table'},
                {name: 'Kite surf', img_url: 'kite surf'},
                {name: 'Wind surf', img_url: 'windsurf'},
                {name: 'Canoas', img_url: 'canoe'}]
@@ -67,7 +67,7 @@ equipments = []
     price_hour: 10,
     start_date: Time.current,
     end_date: 30.day.from_now,
-    location: Faker::Address.full_address #'Mar del Plata',
+    location: Faker::Address.full_address, #'Mar del Plata',
     state: 'published'
 )
 end
