@@ -10,17 +10,19 @@
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
 
-    <!-- Search Form with Active Records-->
+    <!-- Search Form with Pg_search-->
     <div class="container">
       <%= form_tag equipments_path, method: :get do %>
-      <%= text_field_tag :query,
-        params[:query],
-        class: "form-control",
-        placeholder: "Find an equipment"
-      %>
-      <%= submit_tag "Search", class: "btn btn-primary" %>
+        <div class="d-flex">
+          <%= text_field_tag :query,
+            params[:query],
+            class: "form-control",
+            placeholder: "Buscar equipo"
+          %>
+          <%= submit_tag "Buscar", class: "btn btn-primary" %>
+        </div>
       <% end %>
-      </div>
+    </div>
     <!-- -->
 
     <ul class="navbar-nav mr-auto">
