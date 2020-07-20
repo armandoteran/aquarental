@@ -4,24 +4,25 @@
     Publicar equipo <i class="fa fa-plus-circle" aria-hidden="true"></i>
   <% end %>
 
-
-  <!-- Search Form with Active Records-->
-  <%= form_tag equipments_path, method: :get do %>
-  <%= text_field_tag :query,
-    params[:query],
-    class: "form-control",
-    placeholder: "Find an equipment"
-  %>
-  <%= submit_tag "Search", class: "btn btn-primary" %>
-  <% end %>
-  <!-- -->
-
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
 
-
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+    <!-- Search Form with Active Records-->
+    <div class="container">
+      <%= form_tag equipments_path, method: :get do %>
+      <%= text_field_tag :query,
+        params[:query],
+        class: "form-control",
+        placeholder: "Find an equipment"
+      %>
+      <%= submit_tag "Search", class: "btn btn-primary" %>
+      <% end %>
+      </div>
+    <!-- -->
+
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
         <%= link_to "Inicio", equipments_path, class: "nav-link" %>
