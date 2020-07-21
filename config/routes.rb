@@ -6,6 +6,9 @@ Rails.application.routes.draw do
     resources :bookings, only: %i[new create show]
   end
 
-  resources :bookings, except: %i[new create]
+  resources :bookings, except: %i[new create] do
+    resources :reviews, only: %i[new create]
+  end
 
+  resources :reviews, except: %i[new create]
 end
