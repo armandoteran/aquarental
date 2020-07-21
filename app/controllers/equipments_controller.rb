@@ -7,8 +7,13 @@ class EquipmentsController < ApplicationController
   after_action :verify_policy_scoped, only: :index, unless: :skip_pundit?
 
   def index
-    @equipments = Equipment.all
-    @equipments = policy_scope(Equipment)
+    if params[:query].present?
+      @equipments = policy_scope(Equipment)
+      @equipments = Equipment.search_by(params[:query])
+    else
+      @equipments = Equipment.all
+      @equipments = policy_scope(Equipment)
+    end
   end
 
   def show
