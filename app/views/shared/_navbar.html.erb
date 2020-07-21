@@ -17,6 +17,9 @@
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
+        <%= link_to new_equipment_path,  { class: "btn btn-ghost" } do %>
+          Publicar equipo <i class="fa fa-plus-circle" aria-hidden="true"></i>
+        <% end %>
       <% if user_signed_in? %>
         <li class="nav-item dropdown">
           <%= image_tag "https://kitt.lewagon.com/placeholder/users/ssaunier", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
@@ -25,13 +28,11 @@
             <%= link_to "Cerrar sesion", destroy_user_session_path, method: :delete, class: "dropdown-item" %>
           </div>
         </li>
+
       <% else %>
         <li class="nav-item">
           <%= link_to "Iniciar sesion", new_user_session_path, class: "nav-link" %>
         </li>
-        <%= link_to new_equipment_path,  { class: "btn btn-ghost" } do %>
-          Publicar equipo <i class="fa fa-plus-circle" aria-hidden="true"></i>
-        <% end %>
       <% end %>
     </ul>
   </div>
