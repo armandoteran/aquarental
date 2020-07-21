@@ -1,20 +1,20 @@
 <div class="container my-3">
   <div class="cards">
     <% @equipments.each do |eq| %>
-
-      <div class="card-trip">
-        <%= image_tag "#{eq.picture_url}", width: 200 %>
-        <div class="card-trip-infos">
-          <div>
-            <h2 class="overflow ellipsis"><%= eq.name.truncate(24) %></h2>
-            <p><%= eq.description.truncate(28) %></p>
+      <%= link_to equipment_path(eq), class: "card-trip-link" do %>
+        <div class="card-trip">
+          <%= image_tag "#{eq.picture_url}", width: 200 %>
+          <div class="card-trip-infos">
+            <div>
+              <h2><%= eq.name.truncate(24) %></h2>
+              <p><%= eq.description.truncate(28) %></p>
+            </div>
+            <h2 class="card-trip-pricing"><%= "$#{eq.price_day}/dia" %></h2>
+            <img src="https://kitt.lewagon.com/placeholder/users/krokrob" class="card-trip-user avatar-bordered" />
+            <%#= link_to "", equipment_path(eq), class: "card-link" %>
           </div>
-          <h2 class="card-trip-pricing"><%= "$#{eq.price_day}/dia" %></h2>
-          <img src="https://kitt.lewagon.com/placeholder/users/krokrob" class="card-trip-user avatar-bordered" />
-          <%= link_to "", equipment_path(eq), class: "card-link" %>
         </div>
-      </div>
-
+      <% end %>
     <% end %>
   </div>
 </div>
