@@ -9,15 +9,26 @@
       <div class="card-trip" style="border-radius: 5px">
         <div class="mx-4 my-3">
           <h2 class="text-center mb-3"><strong><%= @as_renter_booking.equipment.name %></strong></h2>
-          <h3><strong>Owner:</strong> <%= @as_renter_booking.owner.email %></h3>
-          <h3><strong>Renter:</strong> <%= @as_renter_booking.renter.email %></h3>
-          <h3><strong>Start date:</strong> <%= @as_renter_booking.start_date %></h3>
-          <h3><strong>End date:</strong> <%= @as_renter_booking.end_date %></h3>
-          <h3><strong>State:</strong> <%= @as_renter_booking.state %></h3>
-          <h3><strong>Total Price:</strong> US$<%= @as_renter_booking.total_price %></h3>
-          <%= link_to booking_path(@booking), method: :delete, data: { confirm: "Are you sure?" } do %>
-            <i class="fa fa-trash destroy_dose"></i>
+          <hr>
+          <p><strong>Owner:</strong> <%= @as_renter_booking.owner.email %></p>
+          <p><strong>Renter:</strong> <%= @as_renter_booking.renter.email %></p>
+          <p><strong>Start date:</strong> <%= @as_renter_booking.start_date %></p>
+          <p><strong>End date:</strong> <%= @as_renter_booking.end_date %></p>
+          <p><strong>State:</strong> <%= @as_renter_booking.state %></p>
+          <p class="mb-3"><strong>Total Price:</strong> US$<%= @as_renter_booking.total_price %></p>
+
+          <% unless @as_renter_booking.state == "BOOKED" %>
+            <%= link_to booking_path(@booking), method: :delete, data: { confirm: "Are you sure?" } do %>
+              <i class="fa fa-trash destroy_dose"></i>
+            <% end %>
+
+            <% if  policy(@booking).update?%>
+              <%= link_to booking_path(@booking), method: "PATCH", data: { confirm: "Are you sure?" }, class:"ml-3"  do %>
+               <i class="fa fa-check" aria-hidden="true"></i>
+              <% end %>
+            <% end %>
           <% end %>
+
         </div>
       </div>
     </div>
