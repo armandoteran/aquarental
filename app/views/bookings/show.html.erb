@@ -1,21 +1,25 @@
-<div class="container">
-  <h1> Mis solicitudes de reserva </h1>
-  <div class="cards-booking my-3 mx-3">
+<div>
+  <h1 class="text-center mt-3"> Mis solicitudes de reserva </h1>
+  <div class="row">
+    <div class="col-sm-12 col-md-7 col-lg-7 mx-3 mt-3 pr-3">
+      <%= image_tag "#{@as_renter_booking.equipment.picture_url}", class:"w-100", style:"border-radius: 6px"%>
+    </div>
 
-    <div class="card-product-booking">
-      <%= image_tag "#{@as_renter_booking.equipment.picture_url}", width: 200 %>
-
-        <div class="card-product-infos-booking">
-          <h2><%= @as_renter_booking.equipment.name %></h2>
-          <p><strong>Owner:</strong> <%= @as_renter_booking.owner.email %></p>
-          <p><strong>Renter:</strong> <%= @as_renter_booking.renter.email %></p>
-          <p><strong>Start date:</strong> <%= @as_renter_booking.start_date %></p>
-          <p><strong>End date:</strong> <%= @as_renter_booking.end_date %></p>
-          <p><strong>State:</strong> <%= @as_renter_booking.state %></p>
-          <p><strong>Total price:</strong> US$<%= @as_renter_booking.total_price %></p>
+    <div class="col-sm-12 col-md-4 col-lg-4 mx-3 mt-3">
+      <div class="card-trip" style="border-radius: 5px">
+        <div class="mx-4 my-3">
+          <h2 class="text-center mb-3"><strong><%= @as_renter_booking.equipment.name %></strong></h2>
+          <h3><strong>Owner:</strong> <%= @as_renter_booking.owner.email %></h3>
+          <h3><strong>Renter:</strong> <%= @as_renter_booking.renter.email %></h3>
+          <h3><strong>Start date:</strong> <%= @as_renter_booking.start_date %></h3>
+          <h3><strong>End date:</strong> <%= @as_renter_booking.end_date %></h3>
+          <h3><strong>State:</strong> <%= @as_renter_booking.state %></h3>
+          <h3><strong>Total Price:</strong> US$<%= @as_renter_booking.total_price %></h3>
+          <%= link_to booking_path(@booking), method: :delete, data: { confirm: "Are you sure?" } do %>
+            <i class="fa fa-trash destroy_dose"></i>
+          <% end %>
         </div>
-
+      </div>
     </div>
   </div>
 </div>
-

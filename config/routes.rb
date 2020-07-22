@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   root to: 'equipments#index'
 
   resources :equipments do
-    resources :bookings, only: %i[new create show]
+    resources :bookings, only: %i[new create]
   end
 
   resources :bookings, except: %i[new create] do

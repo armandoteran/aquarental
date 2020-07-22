@@ -4,7 +4,15 @@ class BookingsController < ApplicationController
   # after_action :verify_policy_scoped, only: :index, unless: :skip_pundit?
 
   def index
-    @as_owner_bookings = Booking.where(owner: current_user.id)
+    user_equipments = Equipment.where(user_id: current_user.id)
+    @bookings = Booking.all
+    user_equipments.each do |equipment|
+      @bookings.each do |booking|
+        if booking.equipment_id == equipment.id
+          @as_owner_bookings = Booking.where(equipment_id: equipment.id)
+        end
+      end
+    end
     @as_renter_bookings = Booking.where(renter: current_user.id)
     # provisorio
   end
@@ -12,7 +20,6 @@ class BookingsController < ApplicationController
   def show
     @booking = Booking.find(params[:id])
     authorize @booking
-    #@as_renter_bookings = Booking.where(renter: current_user.id)
     @as_renter_booking = Booking.find(params[:id])
   end
 
@@ -51,6 +58,7 @@ class BookingsController < ApplicationController
     @booking = Booking.find(params[:id])
     @booking.destroy
     authorize @booking
+    redirect_to bookings_path
   end
 
   private
