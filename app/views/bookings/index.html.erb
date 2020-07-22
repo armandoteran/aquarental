@@ -5,7 +5,7 @@
 
       <% @as_renter_bookings.each do |book| %>
 
-        <% if policy(book.equipment).update? %>
+
           <div class="card-product-booking">
             <%= image_tag "#{book.equipment.picture_url}", width: 200 %>
 
@@ -19,7 +19,7 @@
               <%= link_to "Ver reserva", booking_path(book) %>
             </div>
           </div>
-        <% end %>
+
       <% end %>
   </div>
 </div>
@@ -30,12 +30,13 @@
 
       <% @as_owner_bookings.each do |book| %>
 
-        <% if policy(book).update? %>
+
           <div class="card-product-booking">
             <%= image_tag "#{book.equipment.picture_url}", width: 200 %>
 
             <div class="card-product-infos-booking">
               <h2><%= book.equipment.name %></h2>
+              <p><%= book.id %></p>
               <p><strong>Owner:</strong> <%= book.owner.email %></p>
               <p><strong>Renter:</strong> <%= book.renter.email %></p>
               <p><strong>Start date:</strong> <%= book.start_date %></p>
@@ -44,7 +45,7 @@
               <%= link_to "Aceptar o rechazar reserva", booking_path(book) %>
             </div>
           </div>
-         <% end %>
+
       <% end %>
   </div>
 </div>
