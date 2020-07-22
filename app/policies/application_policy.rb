@@ -38,7 +38,7 @@ class ApplicationPolicy
     attr_reader :user, :scope
 
     def initialize(user, scope)
-      @user = userif policy(@equipment).update?
+      @user = user
       @scope = scope
     end
 
