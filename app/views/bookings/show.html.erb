@@ -1,2 +1,21 @@
-<h1>Hi!</h1>
+<div class="container">
+  <h1> Mis solicitudes de reserva </h1>
+  <div class="cards-booking my-3 mx-3">
+
+    <div class="card-product-booking">
+      <%= image_tag "#{@as_renter_booking.equipment.picture_url}", width: 200 %>
+
+        <div class="card-product-infos-booking">
+          <h2><%= @as_renter_booking.equipment.name %></h2>
+          <p><strong>Owner:</strong> <%= @as_renter_booking.owner.email %></p>
+          <p><strong>Renter:</strong> <%= @as_renter_booking.renter.email %></p>
+          <p><strong>Start date:</strong> <%= @as_renter_booking.start_date %></p>
+          <p><strong>End date:</strong> <%= @as_renter_booking.end_date %></p>
+          <p><strong>State:</strong> <%= @as_renter_booking.state %></p>
+          <p><strong>Total price:</strong> US$<%= @as_renter_booking.total_price %></p>
+        </div>
+
+    </div>
+  </div>
+</div>
 
