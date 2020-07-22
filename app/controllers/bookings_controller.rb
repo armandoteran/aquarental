@@ -10,7 +10,7 @@ class BookingsController < ApplicationController
     sqlq = "equipment.user_id = ?"
     @as_owner_bookings = Booking.joins(:equipment).where(sqlq, current_user.id)
     # provisorio
-    binding.pry
+    # binding.pry
   end
 
   def show
