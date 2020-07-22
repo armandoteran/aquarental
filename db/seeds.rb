@@ -32,7 +32,7 @@ def equipment_seed(user, category, adjetive)
     category: category[:name],
     picture_url: "https://source.unsplash.com/1600x900/?#{category[:img_url]}",
     price_day: rand(200..2000),
-    price_hour: 10,
+    # price_hour: 10,
     start_date: Time.current,
     end_date: 30.day.from_now,
     location: Faker::Address.full_address, #'Mar del Plata',

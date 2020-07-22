@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_07_14_004920) do
+ActiveRecord::Schema.define(version: 2020_07_22_002434) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -56,7 +56,6 @@ ActiveRecord::Schema.define(version: 2020_07_14_004920) do
     t.string "category"
     t.string "picture_url"
     t.integer "price_day"
-    t.integer "price_hour"
     t.date "start_date"
     t.date "end_date"
     t.string "location"
