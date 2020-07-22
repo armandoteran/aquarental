@@ -4,9 +4,13 @@ class BookingsController < ApplicationController
   # after_action :verify_policy_scoped, only: :index, unless: :skip_pundit?
 
   def index
-    @as_owner_bookings = Booking.where(owner: current_user.id)
-    @as_renter_bookings = Booking.where(renter: current_user.id)
+    @as_renter_bookings = Booking.where(renter: current_user)
+    # Extranamente la relacion Booking.owner funciona en consola pero no aqui
+    # @as_owner_bookings = Booking.where(owner: current_user)
+    sqlq = "equipment.user_id = ?"
+    @as_owner_bookings = Booking.joins(:equipment).where(sqlq, current_user.id)
     # provisorio
+    # binding.pry
   end
 
   def show
