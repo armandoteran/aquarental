@@ -5,7 +5,7 @@ class BookingPolicy < ApplicationPolicy
     end
   end
 
-  def show
+  def show?
     (record.owner == user) || (record.renter == user)
   end
 

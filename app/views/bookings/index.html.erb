@@ -5,7 +5,7 @@
 
       <% @as_renter_bookings.each do |book| %>
 
-        <% if policy(book).update? %>
+        <% if policy(book.equipment).update? %>
           <div class="card-product-booking">
             <%= image_tag "#{book.equipment.picture_url}", width: 200 %>
 
