@@ -18,7 +18,7 @@ class EquipmentsController < ApplicationController
 
   def show
     @booking = Booking.new
-    #authorize @booking
+    # authorize @booking
   end
 
   def new
