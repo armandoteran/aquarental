@@ -14,7 +14,7 @@ class BookingPolicy < ApplicationPolicy
   end
 
   def update?
-    record.owner == user || record.renter == user
+    record.owner == user
   end
 
   def destroy?
