@@ -25,8 +25,7 @@
       </div>
 
       <% if current_user %>
-        <% if current_user.id == @equipment.user_id %>
-        <% else %>
+        <% if current_user.id != @equipment.user_id %>
           <div class="mt-3 p-3" style="border-radius: 5px; box-shadow: 0 0 15px rgba(0,0,0,0.2);">
             <%= simple_form_for [@equipment, @booking] do |f| %>
               <%= f.input :start_date, as: :date %>
