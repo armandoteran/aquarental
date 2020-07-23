@@ -13,7 +13,13 @@ class BookingPolicy < ApplicationPolicy
     true
   end
 
-  def update?
+  def update?; end
+
+  def accept?
+    record.owner == user
+  end
+
+  def reject?
     record.owner == user
   end
 
