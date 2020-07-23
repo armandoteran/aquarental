@@ -1,4 +1,5 @@
 class BookingsController < ApplicationController
+  before_action :set_booking, only: %i[show accept reject cancel]
   # Authorization
   skip_after_action :verify_authorized, only: %i[index]
   # after_action :verify_policy_scoped, only: :index, unless: :skip_pundit?
@@ -14,7 +15,6 @@ class BookingsController < ApplicationController
   end
 
   def show
-    @booking = Booking.find(params[:id])
     authorize @booking
   end
 
@@ -38,24 +38,36 @@ class BookingsController < ApplicationController
     end
   end
 
-  def edit
-    @booking = Booking.find(params[:id])
+  # Owner only
+  def accept
+    @booking.state = 'BOOKED'
+    @booking.save
     authorize @booking
+    redirect_to bookings_path
   end
 
-  def update
-    @booking = Booking.find(params[:id])
-    @booking.update(booking_params)
+  def reject
+    @booking.state = 'REJECTED'
+    @booking.save
     authorize @booking
+    redirect_to bookings_path
   end
+  ######################################
 
-  def destroy
-    @booking = Booking.find(params[:id])
-    @booking.destroy
+  # Renter only
+  def cancel
+    @booking.state = 'CANCELLED'
+    @booking.save
     authorize @booking
+    redirect_to bookings_path
   end
+  #############
 
   private
+
+  def set_booking
+    @booking = Booking.find(params[:id])
+  end
 
   def booking_params
     params.require(:booking).permit(:start_date, :end_date)
