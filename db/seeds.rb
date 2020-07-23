@@ -36,7 +36,7 @@ def equipment_seed(user, category, adjetive)
     start_date: Time.current,
     end_date: 30.day.from_now,
     location: Faker::Address.full_address, #'Mar del Plata',
-    state: 'published'
+    state: 'PUBLISHED'
   )
 end
 
