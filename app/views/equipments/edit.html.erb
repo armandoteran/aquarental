@@ -1,4 +1,4 @@
-<%= simple_form_for(@equipment, url: equipments_path, method: "POST") do |f| %>
+<%= simple_form_for (@equipment) do |f| %>
   <%= f.input :name %>
   <%= f.input :description %>
   <%= f.input :category %>
@@ -9,3 +9,5 @@
   <%= f.input :price_day %>
   <%= f.submit %>
 <% end %>
+
+<!-- (@equipment, url: equipments_path, method: "POST") -- >
