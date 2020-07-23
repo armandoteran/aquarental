@@ -48,7 +48,6 @@ class EquipmentsController < ApplicationController
 
   def edit
     authorize @equipment
-    @equipment = Equipment.find(params[:id])
   end
 
   def update
