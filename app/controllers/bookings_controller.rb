@@ -44,8 +44,9 @@ class BookingsController < ApplicationController
     authorize @booking
   end
 
-  def update; end
+  #def update; end
 
+  # Owner only
   def accept
     @booking = Booking.find(params[:id])
     @booking.state = 'BOOKED'
@@ -61,13 +62,24 @@ class BookingsController < ApplicationController
     authorize @booking
     redirect_to bookings_path
   end
+  ######################################
 
-  def destroy
+  # Renter only
+  def cancel
+    @booking = Booking.find(params[:id])
+    @booking.state = 'CANCELLED'
+    @booking.save
+    authorize @booking
+    redirect_to bookings_path
+  end
+  #############
+
+  # def destroy
     # @booking = Booking.find(params[:id])
     # @booking.destroy
     # authorize @booking
     # redirect_to bookings_path
-  end
+  # end
 
   private
 
