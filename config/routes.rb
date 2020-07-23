@@ -4,6 +4,11 @@ Rails.application.routes.draw do
 
   resources :equipments do
     resources :bookings, only: %i[new create]
+
+    collection do
+      get :my
+    end
+
   end
 
   resources :bookings, except: %i[new create] do
