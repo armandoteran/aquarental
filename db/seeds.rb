@@ -45,7 +45,7 @@ def booking_seed(user, equipment)
       user_id: user.id,
       equipment_id: equipment.id,
       total_price: equipment.price_day,
-      state: 'pending',
+      state: 'PENDING',
       start_date: 1.day.from_now,
       end_date: 2.day.from_now,
   )
@@ -71,7 +71,7 @@ puts 'users database is clean'
 #Users
 puts 'creating users'
 users = []
-5.times do
+10.times do
   users << User.create!(
     email: Faker::Internet.email,
     password: 'password'
@@ -89,35 +89,38 @@ equipments = []
   equipments << equipment_seed(users.sample, categories.sample, adjetives.sample)
 end
 
-2.times do
+3.times do
   equipments << equipment_seed(user_owner, categories.sample, adjetives.sample)
 end
 
 puts 'equipments created'
 
 #Bookings
-puts 'creating bookings'
-bookings = []
-5.times do
-  bookings << booking_seed(users.sample, equipments.sample)
-end
+# puts 'creating bookings'
+# bookings = []
+# 5.times do
+#   bookings << booking_seed(users.sample, equipments.sample)
+# end
 
 booking_seed(user_renter, equipments[-1])
 booking_seed(user_renter, equipments[-2])
-2.times do
-  booking_seed(user_owner, equipments.sample)
-end
+# 2.times do
+#   booking_seed(user_owner, equipments.first)
+# end
 
 puts 'bookings created'
 
 #Reviews
 puts 'creating reviews'
-5.times do
-  review = Review.create!(
-    rating: rand(0..5),
-    booking_id: bookings.sample.id,
-    content: Faker::Restaurant.review # 'excellent board'
-)
+
+Booking.all.each do |book|
+  # rand(3..15).times do
+    review = Review.create!(
+      rating: rand(0..5),
+      booking_id: book.id,
+      content: Faker::Restaurant.review # 'excellent board'
+    )
+  # end
 end
 
 

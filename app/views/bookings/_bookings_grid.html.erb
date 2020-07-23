@@ -6,11 +6,14 @@
       <%= image_tag "#{book.equipment.picture_url}", width: 200 %>
         <div class="card-product-infoss">
           <h2><%= book.equipment.name %></h2>
-          <p><strong>Owner:</strong> <%= book.owner.email %></p>
-          <p><strong>Renter:</strong> <%= book.renter.email %></p>
-          <p><strong>Start date:</strong> <%= book.start_date %></p>
-          <p><strong>End date:</strong> <%= book.end_date %></p>
-          <p><strong>Total price:</strong> US$<%= book.total_price %></p>
+          <% if current_user == book.renter  %>
+            <p><strong>Dueño:</strong> <%= book.owner.email %></p>
+          <% elsif current_user == book.owner %>
+            <p><strong>Soicitante:</strong> <%= book.renter.email %></p>
+          <% end %>
+          <p><strong>Inicio de alquiler:</strong> <%= book.start_date %></p>
+          <p><strong>Fin de alquiler:</strong> <%= book.end_date %></p>
+          <p><strong>Precio:</strong> $<%= book.total_price %></p>
         </div>
       </div>
     <% end %>
