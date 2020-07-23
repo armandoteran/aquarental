@@ -1,9 +1,12 @@
 class Equipment < ApplicationRecord
+  VALID_CATEGORIES = ["Surf", "Canopy"].freeze
   belongs_to :owner, class_name: "User", foreign_key: "user_id"
   has_many :bookings, dependent: :destroy
 
-  validates :name, :description, :category, :price_day,
+  validates :name, :description, :price_day,
             :start_date, :end_date, :location, presence: true
+
+  validates :category, inclusion: { in: VALID_CATEGORIES }
 
   validate :end_date_after_start_date
 
