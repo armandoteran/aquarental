@@ -1,11 +1,14 @@
-<%= simple_form_for(@equipment, url: equipments_path, method: "POST") do |f| %>
-  <%= f.input :name %>
-  <%= f.input :description %>
-  <%= f.input :category %>
-  <%= f.input :location %>
-  <%= f.input :picture_url %>
-  <%= f.input :start_date %>
-  <%= f.input :end_date %>
-  <%= f.input :price_day %>
-  <%= f.submit %>
-<% end %>
+<div class="container">
+  <%= simple_form_for(@equipment, url: equipments_path, method: "POST") do |f| %>
+    <%= f.input :name %>
+    <%= f.input :description %>
+    <%= f.input :category %>
+    <%= f.input :location %>
+    <%= f.input :picture_url %>
+    <%= f.input :start_date %>
+    <%= f.input :end_date %>
+    <%= f.input :price_day %>
+    <%= f.submit %>
+  <% end %>
+</div>
+
