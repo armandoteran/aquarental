@@ -15,6 +15,7 @@ class BookingPolicy < ApplicationPolicy
 
   def update?; end
 
+  # Owner only
   def accept?
     record.owner == user
   end
@@ -22,6 +23,13 @@ class BookingPolicy < ApplicationPolicy
   def reject?
     record.owner == user
   end
+  #############
+
+  # Renter only
+  def cancel?
+    record.renter == user
+  end
+  #############
 
   def destroy?
     (record.owner == user) || (record.renter == user)
