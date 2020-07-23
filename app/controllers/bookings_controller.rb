@@ -44,7 +44,9 @@ class BookingsController < ApplicationController
     authorize @booking
   end
 
-  def update
+  def update; end
+
+  def accept
     @booking = Booking.find(params[:id])
     @booking.state = 'BOOKED'
     @booking.save
@@ -52,11 +54,19 @@ class BookingsController < ApplicationController
     redirect_to bookings_path
   end
 
-  def destroy
+  def reject
     @booking = Booking.find(params[:id])
-    @booking.destroy
+    @booking.state = 'REJECTED'
+    @booking.save
     authorize @booking
     redirect_to bookings_path
+  end
+
+  def destroy
+    # @booking = Booking.find(params[:id])
+    # @booking.destroy
+    # authorize @booking
+    # redirect_to bookings_path
   end
 
   private
