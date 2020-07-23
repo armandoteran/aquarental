@@ -1,52 +1,24 @@
 
 <div class="container">
-  <h2> Mis solicitudes de reserva </h2>
-  <div class="cards-booking my-3 mx-3">
+    <!-- Nav tabs -->
+  <ul class="nav nav-tabs" id="myTab" role="tablist">
+    <li class="nav-item">
+      <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Mis reservas solicitadas</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Mis equipos solicitados</a>
+    </li>
+  </ul>
 
-      <% @as_renter_bookings.each do |book| %>
+  <!-- Tab panes -->
+  <div class="tab-content">
+    <div class="tab-pane active" id="home" role="tabpanel" aria-labelledby="home-tab">
+      <%= render "bookings_grid", bookings: @as_renter_bookings %>
+    </div>
 
+    <div class="tab-pane" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+      <%= render "bookings_grid", bookings: @as_owner_bookings %>
+    </div>
 
-          <div class="card-product-booking">
-            <%= image_tag "#{book.equipment.picture_url}", width: 200 %>
-
-            <div class="card-product-infos-booking">
-              <p><%= book.id %></p>
-              <h2><%= book.equipment.name %></h2>
-              <p><strong>Owner:</strong> <%= book.owner.email %></p>
-              <p><strong>Renter:</strong> <%= book.renter.email %></p>
-              <p><strong>Start date:</strong> <%= book.start_date %></p>
-              <p><strong>End date:</strong> <%= book.end_date %></p>
-              <p><strong>Total price:</strong> US$<%= book.total_price %></p>
-              <%= link_to "Ver reserva", booking_path(book) %>
-            </div>
-          </div>
-
-      <% end %>
-  </div>
-</div>
-
-<div class="container">
-  <h2> Equipos propios con solicitudes pendientes </h2>
-  <div class="cards-booking my-3 mx-3">
-
-      <% @as_owner_bookings.each do |book| %>
-
-
-          <div class="card-product-booking">
-            <%= image_tag "#{book.equipment.picture_url}", width: 200 %>
-
-            <div class="card-product-infos-booking">
-              <h2><%= book.equipment.name %></h2>
-              <p><%= book.id %></p>
-              <p><strong>Owner:</strong> <%= book.owner.email %></p>
-              <p><strong>Renter:</strong> <%= book.renter.email %></p>
-              <p><strong>Start date:</strong> <%= book.start_date %></p>
-              <p><strong>End date:</strong> <%= book.end_date %></p>
-              <p><strong>Total price:</strong> US$<%= book.total_price %></p>
-              <%= link_to "Aceptar o rechazar reserva", booking_path(book) %>
-            </div>
-          </div>
-
-      <% end %>
   </div>
 </div>
