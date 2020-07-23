@@ -2,22 +2,22 @@
   <h1 class="text-center mt-3"> Confirmar solicitud de reserva </h1>
   <div class="row">
     <div class="col-sm-12 col-md-7 col-lg-7 mx-3 mt-3 pr-3">
-      <%= image_tag "#{@as_renter_booking.equipment.picture_url}", class:"w-100", style:"border-radius: 6px"%>
+      <%= image_tag "#{@booking.equipment.picture_url}", class:"w-100", style:"border-radius: 6px"%>
     </div>
 
     <div class="col-sm-12 col-md-4 col-lg-4 mx-3 mt-3">
       <div class="card-trip" style="border-radius: 5px">
         <div class="mx-4 my-3">
-          <h2 class="text-center mb-3"  style="font-size: 24px"><strong><%= @as_renter_booking.equipment.name %></strong></h2>
+          <h2 class="text-center mb-3"  style="font-size: 24px"><strong><%= @booking.equipment.name %></strong></h2>
           <hr>
-          <p class="mt-4 pl-4" style="font-size: 18px"><strong>Owner:</strong> <%= @as_renter_booking.owner.email %></p>
-          <p class="pl-4" style="font-size: 18px"><strong>Renter:</strong> <%= @as_renter_booking.renter.email %></p>
-          <p class="pl-4" style="font-size: 18px"><strong>Start date:</strong> <%= @as_renter_booking.start_date %></p>
-          <p class="pl-4" style="font-size: 18px"><strong>End date:</strong> <%= @as_renter_booking.end_date %></p>
-          <p class="mb-3 pl-4" style="font-size: 18px"><strong>State:</strong> <%= @as_renter_booking.state %></p>
-          <p class="mb-3 pl-4" style="font-size: 18px"><strong>Total Price:</strong> US$<%= @as_renter_booking.total_price %></p>
+          <p class="mt-4 pl-4" style="font-size: 18px"><strong>Owner:</strong> <%= @booking.owner.email %></p>
+          <p class="pl-4" style="font-size: 18px"><strong>Renter:</strong> <%= @booking.renter.email %></p>
+          <p class="pl-4" style="font-size: 18px"><strong>Start date:</strong> <%= @booking.start_date %></p>
+          <p class="pl-4" style="font-size: 18px"><strong>End date:</strong> <%= @booking.end_date %></p>
+          <p class="mb-3 pl-4" style="font-size: 18px"><strong>State:</strong> <%= @booking.state %></p>
+          <p class="mb-3 pl-4" style="font-size: 18px"><strong>Total Price:</strong> US$<%= @booking.total_price %></p>
 
-          <% if @as_renter_booking.state == "PENDING" %>
+          <% if @booking.state == "PENDING" %>
 
             <% if  policy(@booking).accept?%>
               <%= link_to accept_booking_path(@booking), method: "POST", data: { confirm: "Are you sure you want to accept this booking?" }, class:"ml-3"  do %>
