@@ -20,19 +20,19 @@
           <% if @booking.state == "PENDING" %>
 
             <% if  policy(@booking).accept?%>
-              <%= link_to accept_booking_path(@booking), method: "POST", data: { confirm: "Are you sure you want to accept this booking?" }, class:"ml-3"  do %>
+              <%= link_to accept_booking_path(@booking), method: "GET", data: { confirm: "Are you sure you want to accept this booking?" }, class:"ml-3"  do %>
                <i class="far fa-check-circle pl-4 my-4" style="color: green; font-size: 32px"></i>
               <% end %>
             <% end %>
 
             <% if  policy(@booking).reject?%>
-              <%= link_to reject_booking_path(@booking), method: "POST", data: { confirm: "Are you sure you want to reject this booking?" }, class:"ml-3"  do %>
+              <%= link_to reject_booking_path(@booking), method: "GET", data: { confirm: "Are you sure you want to reject this booking?" }, class:"ml-3"  do %>
                <i class="fas fa-times-circle pl-4 my-4" style ="color: orange; font-size: 32px"></i>
               <% end %>
             <% end %>
 
             <% if  policy(@booking).cancel?%>
-              <%= link_to cancel_booking_path(@booking), method: "POST", data: { confirm: "Are you sure you want to cancel this booking?" }, class:"ml-3"  do %>
+              <%= link_to cancel_booking_path(@booking), method: "GET", data: { confirm: "Are you sure you want to cancel this booking?" }, class:"ml-3"  do %>
                <i class="fas fa-times-circle pl-4 my-4" style ="color: orange; font-size: 32px"></i>
               <% end %>
             <% end %>

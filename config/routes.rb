@@ -10,7 +10,7 @@ Rails.application.routes.draw do
     resources :reviews, only: %i[new create]
 
     member do
-      post :accept, :reject, :cancel
+      get :accept, :reject, :cancel
     end
 
   end
