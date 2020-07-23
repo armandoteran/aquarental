@@ -1,5 +1,5 @@
 <div>
-  <h1 class="text-center mt-3"> Mis solicitudes de reserva </h1>
+  <h1 class="text-center mt-3"> Confirmar solicitud de reserva </h1>
   <div class="row">
     <div class="col-sm-12 col-md-7 col-lg-7 mx-3 mt-3 pr-3">
       <%= image_tag "#{@as_renter_booking.equipment.picture_url}", class:"w-100", style:"border-radius: 6px"%>
@@ -8,25 +8,35 @@
     <div class="col-sm-12 col-md-4 col-lg-4 mx-3 mt-3">
       <div class="card-trip" style="border-radius: 5px">
         <div class="mx-4 my-3">
-          <h2 class="text-center mb-3"><strong><%= @as_renter_booking.equipment.name %></strong></h2>
+          <h2 class="text-center mb-3"  style="font-size: 24px"><strong><%= @as_renter_booking.equipment.name %></strong></h2>
           <hr>
-          <p><strong>Owner:</strong> <%= @as_renter_booking.owner.email %></p>
-          <p><strong>Renter:</strong> <%= @as_renter_booking.renter.email %></p>
-          <p><strong>Start date:</strong> <%= @as_renter_booking.start_date %></p>
-          <p><strong>End date:</strong> <%= @as_renter_booking.end_date %></p>
-          <p><strong>State:</strong> <%= @as_renter_booking.state %></p>
-          <p class="mb-3"><strong>Total Price:</strong> US$<%= @as_renter_booking.total_price %></p>
+          <p class="mt-4 pl-4" style="font-size: 18px"><strong>Owner:</strong> <%= @as_renter_booking.owner.email %></p>
+          <p class="pl-4" style="font-size: 18px"><strong>Renter:</strong> <%= @as_renter_booking.renter.email %></p>
+          <p class="pl-4" style="font-size: 18px"><strong>Start date:</strong> <%= @as_renter_booking.start_date %></p>
+          <p class="pl-4" style="font-size: 18px"><strong>End date:</strong> <%= @as_renter_booking.end_date %></p>
+          <p class="mb-3 pl-4" style="font-size: 18px"><strong>State:</strong> <%= @as_renter_booking.state %></p>
+          <p class="mb-3 pl-4" style="font-size: 18px"><strong>Total Price:</strong> US$<%= @as_renter_booking.total_price %></p>
 
-          <% unless @as_renter_booking.state == "BOOKED" %>
-            <%= link_to booking_path(@booking), method: :delete, data: { confirm: "Are you sure?" } do %>
-              <i class="fa fa-trash destroy_dose"></i>
-            <% end %>
+          <% if @as_renter_booking.state == "PENDING" %>
 
-            <% if  policy(@booking).update?%>
-              <%= link_to booking_path(@booking), method: "PATCH", data: { confirm: "Are you sure?" }, class:"ml-3"  do %>
-               <i class="fa fa-check" aria-hidden="true"></i>
+            <% if  policy(@booking).accept?%>
+              <%= link_to accept_booking_path(@booking), method: "POST", data: { confirm: "Are you sure you want to accept this booking?" }, class:"ml-3"  do %>
+               <i class="far fa-check-circle pl-4 my-4" style="color: green; font-size: 32px"></i>
               <% end %>
             <% end %>
+
+            <% if  policy(@booking).reject?%>
+              <%= link_to reject_booking_path(@booking), method: "POST", data: { confirm: "Are you sure you want to reject this booking?" }, class:"ml-3"  do %>
+               <i class="fas fa-times-circle pl-4 my-4" style ="color: orange; font-size: 32px"></i>
+              <% end %>
+            <% end %>
+
+            <% if  policy(@booking).cancel?%>
+              <%= link_to cancel_booking_path(@booking), method: "POST", data: { confirm: "Are you sure you want to cancel this booking?" }, class:"ml-3"  do %>
+               <i class="fas fa-times-circle pl-4 my-4" style ="color: orange; font-size: 32px"></i>
+              <% end %>
+            <% end %>
+
           <% end %>
 
         </div>
