@@ -1,7 +1,7 @@
 <div class="container my-3">
   <div class="cards">
     <% @equipments.each do |eq| %>
-      <% if policy(eq).update? == false %>
+      <% if current_user != eq.owner %>
         <%= link_to equipment_path(eq), class: "card-trip-link hvr-grow m-1" do %>
           <div class="card-trip">
             <%= image_tag "#{eq.picture_url}", width: 200 %>
