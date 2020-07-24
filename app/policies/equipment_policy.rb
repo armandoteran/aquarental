@@ -20,4 +20,8 @@ class EquipmentPolicy < ApplicationPolicy
   def destroy?
     record.owner == user
   end
+
+  def my?
+    true
+  end
 end
