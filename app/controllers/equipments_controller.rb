@@ -19,6 +19,8 @@ class EquipmentsController < ApplicationController
   def show
     @booking = Booking.new
     # authorize @booking
+    sqlq = "bookings.equipment_id = ?"
+    @reviews = Review.joins(:booking).where(sqlq, params[:id])
   end
 
   def new
