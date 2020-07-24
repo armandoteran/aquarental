@@ -58,8 +58,8 @@ class EquipmentsController < ApplicationController
   end
 
   def my
-    @as_owner_equipments = Equipment.where(user_id: current_user.id)
-    authorize @as_owner_equipments
+    @equipments = Equipment.where(user_id: current_user.id)
+    authorize @equipments
   end
 
   private
