@@ -59,6 +59,11 @@ class EquipmentsController < ApplicationController
     redirect_to equipment_path(@equipment)
   end
 
+  def my
+    @equipments = Equipment.where(user_id: current_user.id)
+    authorize @equipments
+  end
+
   private
 
   def set_equipment
