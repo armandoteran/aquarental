@@ -11,6 +11,7 @@
           <p class="my-3"><%= @equipment.location %></p>
           <hr>
           <p class="my-3"><%= @equipment.description %></p>
+          <p class="my-3">Owner: <%= @equipment.owner.email %></p>
           <h2 class="card-trip-pricing"><strong>$<%= @equipment.price_day %>/día</strong></h2>
 
           <div class="my-4">
