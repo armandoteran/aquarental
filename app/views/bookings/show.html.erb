@@ -17,6 +17,14 @@
           <p class="mb-3 pl-4" style="font-size: 18px"><strong>State:</strong> <%= @booking.state %></p>
           <p class="mb-3 pl-4" style="font-size: 18px"><strong>Total Price:</strong> US$<%= @booking.total_price %></p>
 
+            <!-- Review form -->
+            <%= simple_form_for [@booking, @review] do |f| %>
+              <%= f.input :content %>
+              <%= f.input :rating, label:"rating", collection: 1..5 %>
+              <%= f.submit "Publicar", class:"btn btn-primary" %>
+            <% end %>
+            <!----------------->
+
           <% if @booking.state == "PENDING" %>
 
             <% if  policy(@booking).accept?%>
