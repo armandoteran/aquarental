@@ -24,7 +24,7 @@
             <h4 class="text-center font-weight-bold text-secundary pt-3">CALIFICADO</h4>
           <% elsif book.end_date < Date.today && book.owner != current_user && book.state != 'REVIEWED' %>
             <h4 class="text-center font-weight-bold text-warning pt-3">CALIFICAR</h4>
-          <% elsif book.end_date < Date.today && book.state = 'BOOKED' %>
+          <% elsif book.end_date < Date.today && book.state == 'BOOKED' %>
             <h4 class="text-center font-weight-bold text-secundary pt-3">FINALIZADO</h4>
           <% elsif book.state == 'PENDING' %>
             <h4 class="text-center font-weight-bold text-primary pt-3">PENDIENTE</h4>
