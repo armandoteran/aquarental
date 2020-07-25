@@ -15,6 +15,8 @@ class BookingsController < ApplicationController
     # Extranamente la relacion Booking.owner funciona en consola pero no aqui
     # @as_owner_bookings = Booking.where(owner: current_user)
     sqlq = "equipment.user_id = :user AND bookings.state = :state"
+    @as_owner_bookings_pending = Booking.joins(:equipment).where(sqlq, user: current_user.id, state: "PENDING")
+    sqlq = "equipment.user_id = :user AND bookings.state <> :state"
     @as_owner_bookings = Booking.joins(:equipment).where(sqlq, user: current_user.id, state: "PENDING")
   end
 
