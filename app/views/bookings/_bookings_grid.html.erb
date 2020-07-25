@@ -9,7 +9,7 @@
           <% if current_user == book.renter  %>
             <p><strong>Dueño:</strong> <%= book.owner.email %></p>
           <% elsif current_user == book.owner %>
-            <p><strong>Soicitante:</strong> <%= book.renter.email %></p>
+            <p><strong>Solicitante:</strong> <%= book.renter.email %></p>
           <% end %>
           <p><strong>Inicio de alquiler:</strong> <%= book.start_date %></p>
           <p><strong>Fin de alquiler:</strong> <%= book.end_date %></p>
