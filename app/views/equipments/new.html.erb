@@ -1,13 +1,13 @@
 <div class="container">
   <%= simple_form_for(@equipment, url: equipments_path, method: "POST") do |f| %>
-    <%= f.input :name %>
-    <%= f.input :description %>
-    <%= f.input :category, collection: Equipment::VALID_CATEGORIES, include_blank: false %>
-    <%= f.input :location %>
-    <%= f.input :picture_url %>
-    <%= f.input :start_date %>
-    <%= f.input :end_date %>
-    <%= f.input :price_day %>
+    <%= f.input :name, label: :Título %>
+    <%= f.input :description, label: :Descripción %>
+    <%= f.input :category, collection: Equipment::VALID_CATEGORIES, include_blank: false, label: :Categoría %>
+    <%= f.input :location, label: :Ubicación %>
+    <%= f.input :picture_url, label: :Imagen %>
+    <%= f.input :start_date, label: :Inicio %>
+    <%= f.input :end_date, label: :Fin %>
+    <%= f.input :price_day, label: :Tarifa_Diaria %>
     <%= f.submit %>
   <% end %>
 </div>
