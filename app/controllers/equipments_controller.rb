@@ -19,6 +19,8 @@ class EquipmentsController < ApplicationController
   def show
     @booking = Booking.new
     # authorize @booking
+    sqlq = "bookings.equipment_id = ?"
+    @reviews = Review.joins(:booking).where(sqlq, params[:id])
   end
 
   def new
@@ -55,6 +57,11 @@ class EquipmentsController < ApplicationController
     @equipment.update(equipment_params)
 
     redirect_to equipment_path(@equipment)
+  end
+
+  def my
+    @equipments = Equipment.where(user_id: current_user.id)
+    authorize @equipments
   end
 
   private

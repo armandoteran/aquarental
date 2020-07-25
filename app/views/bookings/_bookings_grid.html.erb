@@ -14,6 +14,15 @@
           <p><strong>Inicio de alquiler:</strong> <%= book.start_date %></p>
           <p><strong>Fin de alquiler:</strong> <%= book.end_date %></p>
           <p><strong>Precio:</strong> $<%= book.total_price %></p>
+          <% if book.state == 'PENDING' %>
+            <h4 class="text-center font-weight-bold text-primary pt-3">PENDIENTE</h4>
+          <% elsif book.state == 'BOOKED' %>
+            <h4 class="text-center font-weight-bold text-success pt-3">APROBADO</h4>
+          <% elsif book.state == 'REJECTED' %>
+            <h4 class="text-center font-weight-bold text-danger pt-3">RECHAZADO</h4>
+          <% elsif book.state == 'CANCELLED' %>
+            <h4 class="text-center font-weight-bold text-muted pt-3">CANCELADO</h4>
+          <% end %>
         </div>
       </div>
     <% end %>
