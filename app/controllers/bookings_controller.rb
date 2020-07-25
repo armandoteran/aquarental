@@ -6,6 +6,9 @@ class BookingsController < ApplicationController
 
   def index
     @as_renter_bookings = Booking.where(renter: current_user)
+    sqlq = "end_date < ?"
+    @as_renter_pending_review = @as_renter_bookings.where(sqlq, Date.today)
+    # @as_renter_non_pening_review =
     # Extranamente la relacion Booking.owner funciona en consola pero no aqui
     # @as_owner_bookings = Booking.where(owner: current_user)
     sqlq = "equipment.user_id = :user AND bookings.state = :state"
@@ -27,6 +30,7 @@ class BookingsController < ApplicationController
 
   def create
     @equipment = Equipment.find(params[:equipment_id])
+    @equipment.state = 'UNPUBLISHED'
     @booking = Booking.new(booking_params)
     @booking.equipment = @equipment
     @booking.renter = current_user
