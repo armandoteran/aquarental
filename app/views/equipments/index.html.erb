@@ -10,16 +10,13 @@
                 <h2><%= eq.name.truncate(24) %></h2>
                 <p><%= eq.description.truncate(28) %></p>
               </div>
-              <h2 class="card-trip-pricing"><%= "$#{eq.price_day}/dia" %></h2>
+              <div>
+                <h2 class="card-trip-pricing"><%= "$#{eq.price_day}/dia" %></h2>
+                <% eq.avg_rating.times do %>
+                  <span>x</span>
+                <% end %>
+              </div>
               <img src="<%= eq.owner.img_url %>" class="card-trip-user avatar-bordered" />
-              <% sqlq = "bookings.equipment_id = ?" %>
-              <% reviews = Review.joins(:booking).where(sqlq, eq.id) %>
-              <% rating_sum = 0 %>
-              <% reviews.each do |review| %>
-                rating_sum += review.rating
-              <% end %>
-              <% avg_rating = rating_sum.div(reviews.size) %>
-              <p>Stars: <%= avg_rating %></p>
             </div>
           </div>
         <% end %>

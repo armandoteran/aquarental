@@ -23,6 +23,8 @@ class Equipment < ApplicationRecord
     }
 
   def avg_rating
+    return 0 if reviews.empty?
+
     reviews.inject(0){ |sum, review| sum + review.rating } / reviews.count
   end
 end
