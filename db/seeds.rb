@@ -41,6 +41,8 @@ def equipment_seed(user, category, adjetive)
 end
 
 def booking_seed(user, equipment)
+  equipment.state = 'BOOKED'
+  equipment.save!
   Booking.create!(
       user_id: user.id,
       equipment_id: equipment.id,
@@ -113,8 +115,11 @@ user_renter = User.create!(email: 'armandoteran@gmail.com',
 puts 'creating equipments'
 
 equipments = []
+subsel = []
 15.times do
-  equipments << equipment_seed(users.sample, categories.sample, adjetives.sample)
+  eq = equipment_seed(users.sample, categories.sample, adjetives.sample)
+  equipments << eq
+  subsel << eq
 end
 
 3.times do
@@ -130,8 +135,25 @@ puts 'equipments created'
 #   bookings << booking_seed(users.sample, equipments.sample)
 # end
 
-booking_seed(user_renter, equipments[-1])
-booking_seed(user_renter, equipments[-2])
+# Bookings DE  user_owner
+booking_seed(user_owner, subsel.sample)
+booking_seed(user_owner, subsel.sample)
+book_a = booking_seed(user_owner, subsel.sample)
+book_b = booking_seed(user_owner, subsel.sample)
+
+now = Time.now
+book_a.start_date = Date.new(2020,5,10)
+book_a.end_date = Date.new(2020,5,20)
+book_a.state = 'BOOKED'
+book_a.save!
+
+book_b.state = 'REJECTED'
+book_b.save!
+
+
+# Bookings a user_owner
+a = booking_seed(user_renter, equipments[-1])
+b = booking_seed(user_renter, equipments[-2])
 # 2.times do
 #   booking_seed(user_owner, equipments.first)
 # end
