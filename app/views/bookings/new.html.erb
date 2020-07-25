@@ -3,8 +3,8 @@
     <div class="-col-6 m-auto">
 
       <%= simple_form_for [@equipment, @booking] do |f| %>
-        <%= f.input :start_date, as: :date %>
-        <%= f.input :end_date, as: :date %>
+        <%= f.input :start_date, as: :date, label: :Inicio %>
+        <%= f.input :end_date, as: :date, label: :Fin %>
         <% if current_user  %>
           <%= f.submit %>
         <% else %>
