@@ -9,9 +9,9 @@ class EquipmentsController < ApplicationController
   def index
     if params[:query].present?
       @equipments = policy_scope(Equipment)
-      @equipments = Equipment.search_by(params[:query])
+      @equipments = @equipments.search_by(params[:query])
     else
-      @equipments = Equipment.all
+      # @equipments = Equipment.all
       @equipments = policy_scope(Equipment)
     end
   end
