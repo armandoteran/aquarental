@@ -7,12 +7,23 @@ class EquipmentsController < ApplicationController
   after_action :verify_policy_scoped, only: :index, unless: :skip_pundit?
 
   def index
-    if params[:query].present?
-      @equipments = policy_scope(Equipment)
-      @equipments = Equipment.search_by(params[:query])
+    # binding.pry
+    if current_user
+      if params[:query].present?
+        @equipments = policy_scope(Equipment).where(owner: current_user)
+        @equipments = Equipment.search_by(params[:query])
+      else
+        @equipments = Equipment.all.where(owner: current_user)
+        @equipments = policy_scope(Equipment)
+      end
     else
-      @equipments = Equipment.all
-      @equipments = policy_scope(Equipment)
+      if params[:query].present?
+        @equipments = policy_scope(Equipment)
+        @equipments = Equipment.search_by(params[:query])
+      else
+        @equipments = Equipment.all
+        @equipments = policy_scope(Equipment)
+      end
     end
   end
 
