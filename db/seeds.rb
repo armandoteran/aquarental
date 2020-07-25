@@ -69,6 +69,7 @@ User.destroy_all
 puts 'users database is clean'
 
 #Users
+# randomuser.me = https://randomuser.me/api/portraits/med/men/50.jpg
 puts 'creating users'
 users = []
 10.times do
@@ -78,8 +79,10 @@ users = []
 )
 end
 
-user_owner = User.create!(email: 'jpcastiglioni@gmail.com', password: '123456')
-user_renter = User.create!(email: 'armandoteran@gmail.com', password: '123456')
+user_owner = User.create!(email: 'jpcastiglioni@gmail.com',
+                          password: '123456')
+user_renter = User.create!(email: 'armandoteran@gmail.com',
+                           password: '123456')
 
 #Equipments
 puts 'creating equipments'
