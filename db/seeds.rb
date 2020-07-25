@@ -49,7 +49,7 @@ def booking_seed(user, equipment)
       total_price: equipment.price_day,
       state: 'PENDING',
       start_date: 1.day.from_now,
-      end_date: 2.day.from_now,
+      end_date: 2.day.from_now
   )
 end
 
@@ -116,7 +116,7 @@ puts 'creating equipments'
 
 equipments = []
 subsel = []
-15.times do
+25.times do
   eq = equipment_seed(users.sample, categories.sample, adjetives.sample)
   equipments << eq
   subsel << eq
@@ -129,11 +129,7 @@ end
 puts 'equipments created'
 
 #Bookings
-# puts 'creating bookings'
-# bookings = []
-# 5.times do
-#   bookings << booking_seed(users.sample, equipments.sample)
-# end
+puts 'creating bookings'
 
 # Bookings DE  user_owner
 booking_seed(user_owner, subsel.sample)
@@ -159,6 +155,26 @@ book_d.start_date = Date.new(2020,4,10)
 book_d.end_date = Date.new(2020,4,20)
 book_d.save!
 
+
+
+bookings_old = []
+15.times do
+  usr = users.sample
+   # bookings << booking_seed(users.sample, equipments.sample)
+  eqps = Equipment.where.not(state: "BOOKED").where.not(owner: usr)
+  eq = eqps.sample
+  eq.state = 'BOOKED'
+  eq.save!
+  bookings_old << Booking.create!(
+      user_id: usr.id,
+      equipment_id: eq.id,
+      total_price: eq.price_day,
+      state: 'PENDING',
+      start_date: Date.new(2020,3,5),
+      end_date: Date.new(2020,4,5)
+      )
+ end
+
 # 2.times do
 #   booking_seed(user_owner, equipments.first)
 # end
@@ -168,15 +184,15 @@ puts 'bookings created'
 #Reviews
 puts 'creating reviews'
 
-# Booking.all.each do |book|
-#   # rand(3..15).times do
-#     review = Review.create!(
-#       rating: rand(0..5),
-#       booking_id: book.id,
-#       content: Faker::Restaurant.review # 'excellent board'
-#     )
-#   # end
-# end
+bookings_old.each do |book|
+    book.state = 'REVIEWED'
+    book.save!
+    review = Review.create!(
+      rating: rand(0..5),
+      booking_id: book.id,
+      content: Faker::Restaurant.review # 'excellent board'
+    )
+end
 
 
 
