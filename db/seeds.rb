@@ -70,21 +70,35 @@ puts 'users database is clean'
 
 #Users
 # randomuser.me = https://randomuser.me/api/portraits/med/men/50.jpg
-url = 'https://randomuser.me/api/'
+url = 'https://randomuser.me/api/?results=10'
+#   user_serialized = open(url).read
+#   user_json = JSON.parse(user_serialized)
+
+# puts 'creating users'
+# users = []
+# 10.times do |i|
+#   # binding.pry
+#   users << User.create!(
+#     email: user_json['results'][i]['email'], # Faker::Internet.email,
+#     user_name: user_json['results'][i]['login']['username'], # Faker::Name.first_name,
+#     password: 'password',
+#     img_url: user_json['results'][i]['picture']['medium'] # "https://kitt.lewagon.com/placeholder/users/random"
+# )
+# end
 
 puts 'creating users'
 users = []
-10.times do
-  user_serialized = open(url).read
-  user = JSON.parse(user_serialized)
+10.times do |i|
   # binding.pry
   users << User.create!(
-    email: user['results'][0]['email'], # Faker::Internet.email,
-    user_name: user['results'][0]['login']['username'], # Faker::Name.first_name,
+    email: Faker::Internet.email,
+    user_name: Faker::Name.first_name,
     password: 'password',
-    img_url: user['results'][0]['picture']['medium'] # "https://kitt.lewagon.com/placeholder/users/random"
+    img_url: "https://randomuser.me/api/portraits/med/men/#{i}.jpg" # "https://kitt.lewagon.com/placeholder/users/random"
 )
 end
+
+
 
 user_owner = User.create!(email: 'jpcastiglioni@gmail.com',
                           password: '123456',
