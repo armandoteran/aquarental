@@ -11,6 +11,8 @@ class Equipment < ApplicationRecord
 
   validate :end_date_after_start_date
 
+  before_save :fill_image_url
+
   def end_date_after_start_date
     errors.add(:end_date, "can't be before start_date") if start_date > end_date
   end
@@ -26,6 +28,12 @@ class Equipment < ApplicationRecord
     return 0 if reviews.empty?
 
     reviews.inject(0){ |sum, review| sum + review.rating } / reviews.count
+  end
+
+  private
+
+  def fill_image_url
+    self.picture_url ||= "https://source.unsplash.com/1600x900/?#{category.downcase}"
   end
 end
 
