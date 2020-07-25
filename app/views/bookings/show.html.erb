@@ -10,12 +10,12 @@
         <div class="mx-4 my-3">
           <h2 class="text-center mb-3"  style="font-size: 24px"><strong><%= @booking.equipment.name %></strong></h2>
           <hr>
-          <p class="mt-4 pl-4" style="font-size: 18px"><strong>Owner:</strong> <%= @booking.owner.email %></p>
-          <p class="pl-4" style="font-size: 18px"><strong>Renter:</strong> <%= @booking.renter.email %></p>
-          <p class="pl-4" style="font-size: 18px"><strong>Start date:</strong> <%= @booking.start_date %></p>
-          <p class="pl-4" style="font-size: 18px"><strong>End date:</strong> <%= @booking.end_date %></p>
-          <p class="mb-3 pl-4" style="font-size: 18px"><strong>State:</strong> <%= @booking.state %></p>
-          <p class="mb-3 pl-4" style="font-size: 18px"><strong>Total Price:</strong> US$<%= @booking.total_price %></p>
+          <p class="mt-4 pl-4" style="font-size: 18px"><strong>Dueño del equipo:</strong> <%= @booking.owner.email %></p>
+          <p class="pl-4" style="font-size: 18px"><strong>Solicitante de reserva:</strong> <%= @booking.renter.email %></p>
+          <p class="pl-4" style="font-size: 18px"><strong>Fecha de inicio:</strong> <%= @booking.start_date %></p>
+          <p class="pl-4" style="font-size: 18px"><strong>Fecha de fin:</strong> <%= @booking.end_date %></p>
+          <p class="mb-3 pl-4" style="font-size: 18px"><strong>Estado:</strong> <%= @booking.state %></p>
+          <p class="mb-3 pl-4" style="font-size: 18px"><strong>Precio total:</strong> US$<%= @booking.total_price %></p>
 
           <!-- Review form -->
           <% if @booking.state == "BOOKED" && @booking.end_date < Date.today%>
