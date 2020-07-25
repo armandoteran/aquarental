@@ -10,7 +10,7 @@ Rails.application.configure do
   config.eager_load = false
 
   # Whitelist host for ngrok
-  config.hosts << "fac0259f7b29.ngrok.io"
+  config.hosts << "e606936c4185.ngrok.io"
 
   # Show full error reports.
   config.consider_all_requests_local = true
