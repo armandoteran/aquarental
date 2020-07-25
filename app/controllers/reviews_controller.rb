@@ -15,8 +15,10 @@ class ReviewsController < ApplicationController
     @booking = Booking.find(params[:booking_id])
     @review = Review.new(review_params)
     @review.booking = @booking
+    @booking.state = 'REVIEWED'
     authorize @booking
-    if @booking.save
+    if @review.save
+      @booking.save
       redirect_to booking_path(@booking)
     else
       render 'booking/show'
