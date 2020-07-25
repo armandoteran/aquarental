@@ -5,40 +5,44 @@
     <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
       <%= f.error_notification %>
 
-      <h2 class="text-primary">Edit <%= resource_name.to_s.humanize %></h2>
+      <h2 class="text-primary">Editar usuario</h2>
 
       <div class="form-inputs">
-        <%= f.input :email, required: true, autofocus: true %>
+        <%= f.input :email, required: true, autofocus: true, label: :Correo %>
 
         <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
           <p>Currently waiting confirmation for: <%= resource.unconfirmed_email %></p>
         <% end %>
 
         <%= f.input :password,
-          hint: "leave it blank if you don't want to change it",
+          hint: "Dejar en blanco si no desea cambiar su contraseña",
           required: false,
+          label: :Contraseña,
           input_html: { autocomplete: "new-password" } %>
         <%= f.input :password_confirmation,
           required: false,
+          label: :Contraseña,
           input_html: { autocomplete: "new-password" } %>
         <%= f.input :current_password,
-          hint: "we need your current password to confirm your changes",
+          hint: "Necesitamos tu contraseña actual para confirmar los cambios",
           required: true,
+          label: :Contraseña_Actual,
           input_html: { autocomplete: "current-password" } %>
 
         <%= f.input :img_url,
           required: false,
+          label: :Imagen,
           input_html: { autocomplete: "url con tu avatar" }%>
       </div>
 
       <div class="form-actions">
-        <%= f.button :submit, "Update", class: "btn btn-primary mb-4" %>
+        <%= f.button :submit, "Actualizar", class: "btn btn-primary mb-4" %>
       </div>
 
-      <h3 class="text-primary">Cancel my account</h3>
-      <p>Unhappy? <%= link_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
+      <h3 class="text-primary">Cancelar mi cuenta</h3>
+      <p>¿Descontento? <%= link_to "Cancelar mi cuenta", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
 
-      <%= link_to "Back", :back %>
+      <%= link_to "Volver", :back %>
 
     <% end %>
 
