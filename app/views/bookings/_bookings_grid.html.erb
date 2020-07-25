@@ -20,10 +20,10 @@
             <h4 class="text-center font-weight-bold text-muted pt-3">CANCELADO</h4>
           <% elsif book.state == 'REJECTED' %>
             <h4 class="text-center font-weight-bold text-danger pt-3">RECHAZADO</h4>
+          <% elsif book.state == 'REVIEWED' %>
+            <h4 class="text-center font-weight-bold text-secundary pt-3">CALIFICADO</h4>
           <% elsif book.end_date < Date.today && book.owner != current_user && book.state != 'REVIEWED' %>
             <h4 class="text-center font-weight-bold text-warning pt-3">CALIFICAR</h4>
-          <% elsif book.state = 'REVIEWED' %>
-            <h4 class="text-center font-weight-bold text-secundary pt-3">CALIFICADO</h4>
           <% elsif book.end_date < Date.today && book.state = 'BOOKED' %>
             <h4 class="text-center font-weight-bold text-secundary pt-3">FINALIZADO</h4>
           <% elsif book.state == 'PENDING' %>
