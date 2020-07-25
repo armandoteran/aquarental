@@ -19,7 +19,8 @@
 
           <!-- Review form -->
           <% if @booking.state == "BOOKED" && @booking.end_date < Date.today%>
-            <p>Review</p>
+            <hr>
+            <h2 class="my-2">Review</h2>
             <%= simple_form_for [@booking, @review] do |f| %>
               <%= f.input :content %>
               <%= f.input :rating, label:"rating", collection: 1..5 %>
