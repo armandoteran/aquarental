@@ -13,7 +13,7 @@
               <div>
                 <h2 class="card-trip-pricing"><%= "$#{eq.price_day}/dia" %></h2>
                 <% eq.avg_rating.times do %>
-                  <span>x</span>
+                  <span><i class="fas fa-star"></i></span>
                 <% end %>
               </div>
               <img src="<%= eq.owner.img_url %>" class="card-trip-user avatar-bordered" />
