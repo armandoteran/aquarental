@@ -28,7 +28,7 @@ def equipment_seed(user, category, adjetive)
   Equipment.create!(
     user_id: user.id,
     name: "#{adjetive} #{category[:name]}",
-    description: Faker::Company.bs, # ['semi-pro', 'ideal for beginners', 'pro'].sample,
+    description: Faker::Lorem.paragraph_by_chars, #Faker::Company.bs, # ['semi-pro', 'ideal for beginners', 'pro'].sample,
     category: category[:name],
     picture_url: "https://source.unsplash.com/1600x900/?#{category[:img_url]}",
     price_day: rand(200..2000),
@@ -70,19 +70,30 @@ puts 'users database is clean'
 
 #Users
 # randomuser.me = https://randomuser.me/api/portraits/med/men/50.jpg
+url = 'https://randomuser.me/api/'
+
 puts 'creating users'
 users = []
 10.times do
+  user_serialized = open(url).read
+  user = JSON.parse(user_serialized)
+  # binding.pry
   users << User.create!(
-    email: Faker::Internet.email,
-    password: 'password'
+    email: user['results'][0]['email'], # Faker::Internet.email,
+    user_name: user['results'][0]['login']['username'], # Faker::Name.first_name,
+    password: 'password',
+    img_url: user['results'][0]['picture']['medium'] # "https://kitt.lewagon.com/placeholder/users/random"
 )
 end
 
 user_owner = User.create!(email: 'jpcastiglioni@gmail.com',
-                          password: '123456')
+                          password: '123456',
+                          user_name: 'jpcastiglioni',
+                          img_url: "https://kitt.lewagon.com/placeholder/users/jpcastiglioni")
 user_renter = User.create!(email: 'armandoteran@gmail.com',
-                           password: '123456')
+                           password: '123456',
+                           user_name: 'armandoteran',
+                           img_url: "https://kitt.lewagon.com/placeholder/users/armandoteran")
 
 #Equipments
 puts 'creating equipments'

@@ -1,5 +1,5 @@
 class Equipment < ApplicationRecord
-  VALID_CATEGORIES = ["Bote", "Kayak", "Paddle board", "Tablas de surf", "Kite Surf", "Wind surf", "Canoas"].freeze
+  VALID_CATEGORIES = ["Bote", "Kayak", "Paddle board", "Tablas de surf", "Kite surf", "Wind surf", "Canoas"].freeze
   belongs_to :owner, class_name: "User", foreign_key: "user_id"
   has_many :bookings, dependent: :destroy
 
