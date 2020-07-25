@@ -14,6 +14,9 @@ class EquipmentsController < ApplicationController
       @equipments = Equipment.all
       @equipments = policy_scope(Equipment)
     end
+
+    sqlq =
+    @reviews = Equipment.joins(:bookings).where(sqlq, )
   end
 
   def show
