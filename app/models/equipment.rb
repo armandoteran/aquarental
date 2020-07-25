@@ -2,6 +2,7 @@ class Equipment < ApplicationRecord
   VALID_CATEGORIES = ["Bote", "Kayak", "Paddle board", "Tablas de surf", "Kite surf", "Wind surf", "Canoas"].freeze
   belongs_to :owner, class_name: "User", foreign_key: "user_id"
   has_many :bookings, dependent: :destroy
+  has_many :reviews, through: :bookings
 
   validates :name, :description, :price_day,
             :start_date, :end_date, :location, presence: true
@@ -20,6 +21,12 @@ class Equipment < ApplicationRecord
     using: {
       tsearch: { prefix: true }
     }
+
+  def avg_rating
+    return 0 if reviews.empty?
+
+    reviews.inject(0){ |sum, review| sum + review.rating } / reviews.count
+  end
 end
 
 # STATES:
