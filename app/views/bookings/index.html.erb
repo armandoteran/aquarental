@@ -29,7 +29,15 @@
     </div>
 
     <div class="tab-pane" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-      <%= render "bookings_grid", bookings: @as_owner_bookings %>
+      <% if @as_owner_bookings_pending.any? %>
+        <div class="container bg-white border border-bottom border-secondary ">
+          <h3 class="mt-4 text-center text-primary">Tenes nuevas solicitudes pendientes! Revisalas!</h3>
+          <%= render "bookings_grid", bookings: @as_owner_bookings_pending %>
+        </div>
+      <% end %>
+      <div class="container">
+        <%= render "bookings_grid", bookings: @as_owner_bookings %>
+      </div>
     </div>
 
   </div>
