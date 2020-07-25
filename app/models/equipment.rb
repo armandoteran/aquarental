@@ -21,6 +21,10 @@ class Equipment < ApplicationRecord
     using: {
       tsearch: { prefix: true }
     }
+
+  def avg_rating
+    reviews.inject(0){ |sum, review| sum + review.rating } / reviews.count
+  end
 end
 
 # STATES:
