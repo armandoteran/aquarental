@@ -152,8 +152,13 @@ book_b.save!
 
 
 # Bookings a user_owner
-a = booking_seed(user_renter, equipments[-1])
-b = booking_seed(user_renter, equipments[-2])
+book_c = booking_seed(user_renter, equipments[-1])
+book_d = booking_seed(user_renter, equipments[-2])
+
+book_d.start_date = Date.new(2020,4,10)
+book_d.end_date = Date.new(2020,4,20)
+book_d.save!
+
 # 2.times do
 #   booking_seed(user_owner, equipments.first)
 # end
@@ -163,15 +168,15 @@ puts 'bookings created'
 #Reviews
 puts 'creating reviews'
 
-Booking.all.each do |book|
-  # rand(3..15).times do
-    review = Review.create!(
-      rating: rand(0..5),
-      booking_id: book.id,
-      content: Faker::Restaurant.review # 'excellent board'
-    )
-  # end
-end
+# Booking.all.each do |book|
+#   # rand(3..15).times do
+#     review = Review.create!(
+#       rating: rand(0..5),
+#       booking_id: book.id,
+#       content: Faker::Restaurant.review # 'excellent board'
+#     )
+#   # end
+# end
 
 
 
